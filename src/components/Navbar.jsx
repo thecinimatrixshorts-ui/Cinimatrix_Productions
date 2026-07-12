@@ -30,7 +30,7 @@ export const Navbar = () => {
     z-50`}>
         <nav className="container mx-auto px-6 flex item-center justify-between">
            <a href="/" className="flex items-center hover:opacity-80 transition-opacity">
-        <img src="logo_1.png" alt="CiniMatrix Production" className="h-15 w-15 rounded-full " />
+        <img src="logo_1.png" alt="CiniMatrix Production" className="h-15 w-15 rounded-full object-contain" />
         </a>
             {/* Destop Nav*/}
             <div className="hidden md:flex items-center gap-1">
