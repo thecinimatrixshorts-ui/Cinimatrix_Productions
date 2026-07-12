@@ -7,7 +7,12 @@ const photos = [
   { src: "b3.jpeg", alt: "Event coverage" },
   { src: "b4.jpeg", alt: "Product shoot" },
   { src: "b5.jpeg", alt: "Portrait session" },
-  { src: "b6.jpeg", alt: "Campaign shoot" },
+  { src: "b6.jpeg", alt: "Portrait shoot" },
+  { src: "b7.jpeg", alt: "Portrait shoot" },
+  { src: "b8.jpeg", alt: "Portrait shoot" },
+  { src: "b9.jpeg", alt: "Portrait shoot" },
+  { src: "b10.jpeg", alt: "Portrait shoot" },
+  { src: "b11.jpeg", alt: " shoot" },
 ];
 
 export default function Photos() {
