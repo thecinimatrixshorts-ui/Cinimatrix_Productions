@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
 const categories = [
-  { label: "Vlogs", thumbnail: "documentry.jpg", link: "/films#vlogs" },
+  { label: "documentry", thumbnail: "documentry.jpg", link: "/films#vlogs" },
   { label: "Restaurants & Cafes", thumbnail: "restuarant.jpg", link: "/films#restaurants" },
   { label: "Corporate / Real Estate", thumbnail: "corporate_business.jpg", link: "/films#corporate" },
   { label: "Product", thumbnail: "product.jpg", link: "/photos" }, 
