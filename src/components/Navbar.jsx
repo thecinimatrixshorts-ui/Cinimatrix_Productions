@@ -66,7 +66,7 @@ export const Navbar = () => {
 
                    <Button onClick={() => {setisMobileMenuOpen(false) 
                     navigate("/contact")
-                   }}>Contact me</Button>
+                   }}>Contact Us</Button>
           
                 </div>
             </div>
