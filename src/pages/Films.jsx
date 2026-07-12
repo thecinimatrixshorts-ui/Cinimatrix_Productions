@@ -22,8 +22,9 @@ const categories = [
     id: "restaurants",
     name: "Restaurants & Cafes",
     items: [
-      { title: "Restaurant Shoot 1", video: "/films/restaurants/video-1.mp4" },
-      { title: "Cafe Shoot 1", video: "/films/restaurants/video-2.mp4" },
+      { title: "Restaurant Shoot 1", video: "cafe1.mp4" },
+      { title: "Cafe Shoot 1", video: "cafe2.mp4" },
+      { title: "Cafe Shoot 1", video: "cafe3.mp4" },
     ],
   },
   {
