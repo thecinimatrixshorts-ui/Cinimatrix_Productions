@@ -30,32 +30,34 @@ export default function Hero() {
   useEffect(() => () => clearInterval(timerRef.current), []);
 
   return (
-    <section className="relative h-screen w-full overflow-hidden bg-black">
+    <section className="relative h-svh md:h-screen w-full overflow-hidden bg-black">
       <iframe
         ref={iframeRef}
         onLoad={handleLoad}
-        className="absolute top-0 left-1/2 -translate-x-1/2 pointer-events-none"
-        style={{
-          // 115% tall so the bottom ~13% (caption zone) is pushed off-screen
-          height: "max(115vh, 64.69vw)",
-          width: "max(204.44vh, 115vw)",
-        }}
+        className="
+          absolute top-0 left-1/2 -translate-x-1/2 pointer-events-none
+          h-[max(115svh,204.44vw)] w-[calc(max(115svh,204.44vw)_*_1.7778)]
+          md:h-[max(115vh,64.69vw)] md:w-[max(204.44vh,115vw)]
+        "
         src={`https://www.youtube.com/embed/${VIDEO_ID}?autoplay=1&mute=1&loop=1&playlist=${VIDEO_ID}&controls=0&modestbranding=1&rel=0&playsinline=1&disablekb=1&iv_load_policy=3&cc_load_policy=0&enablejsapi=1`}
         allow="autoplay; encrypted-media"
         title="Showreel"
         tabIndex={-1}
       />
 
+      {/* Overlay: a bit darker at the bottom on mobile so text stays readable */}
       <div className="absolute inset-0 bg-ink/60" />
+      <div className="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-black/80 to-transparent md:hidden" />
 
-      <div className="absolute bottom-16 left-6 md:left-16 z-10 max-w-2xl">
-        <h1 className="font-display text-4xl md:text-5xl font-bold tracking-tight text-white">
+      <div className="absolute bottom-10 md:bottom-16 left-5 right-5 md:left-16 md:right-auto z-10 max-w-2xl">
+        <h1 className="font-display text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-white">
           Advertisement & Video Production company in Bangalore
         </h1>
-        <p className="mt-3 text-lg font-medium text-white/90">
+        <p className="mt-3 text-base md:text-lg font-medium text-white/90">
           Cinimatrix Production is a Bangalore-based video agency crafting powerful visual stories for brands across the globe.
         </p>
-        <p className="mt-2 text-white/90 font-body">
+        {/* Long paragraph hidden on phones so it doesn't cover the video */}
+        <p className="mt-2 hidden md:block text-white/90 font-body">
           We move seamlessly between worlds—from high-tech industrial shoots and slick product videos to the vibrant energy of restaurants, fitness gyms, and educational campuses. We turn your unique message into a compelling visual experience that people actually want to watch. Whether you are a local business or a global brand, we help you build trust and stand out through stunning visuals.
         </p>
       </div>
