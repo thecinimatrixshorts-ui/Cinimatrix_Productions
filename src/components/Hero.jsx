@@ -4,27 +4,42 @@ const VIDEO_ID = "s_zvJkrwXs8";
 
 export default function Hero() {
   const iframeRef = useRef(null);
+  const timerRef = useRef(null);
 
-  useEffect(() => {
-    const off = () => {
-      const win = iframeRef.current?.contentWindow;
-      if (!win) return;
-      ["captions", "cc"].forEach((mod) =>
-        win.postMessage(
-          JSON.stringify({ event: "command", func: "unloadModule", args: [mod] }),
-          "*"
-        )
-      );
-    };
-    const t = setTimeout(off, 1500);
-    return () => clearTimeout(t);
-  }, []);
+  const hideCaptions = () => {
+    const win = iframeRef.current?.contentWindow;
+    if (!win) return;
+    win.postMessage(JSON.stringify({ event: "listening", id: 1, channel: "widget" }), "*");
+    ["captions", "cc"].forEach((mod) =>
+      win.postMessage(
+        JSON.stringify({ event: "command", func: "unloadModule", args: [mod] }),
+        "*"
+      )
+    );
+  };
+
+  const handleLoad = () => {
+    let tries = 0;
+    clearInterval(timerRef.current);
+    timerRef.current = setInterval(() => {
+      hideCaptions();
+      if (++tries > 12) clearInterval(timerRef.current);
+    }, 500);
+  };
+
+  useEffect(() => () => clearInterval(timerRef.current), []);
 
   return (
     <section className="relative h-screen w-full overflow-hidden bg-black">
       <iframe
         ref={iframeRef}
-        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none w-[max(100vw,177.78vh)] h-[max(100vh,56.25vw)]"
+        onLoad={handleLoad}
+        className="absolute top-0 left-1/2 -translate-x-1/2 pointer-events-none"
+        style={{
+          // 115% tall so the bottom ~13% (caption zone) is pushed off-screen
+          height: "max(115vh, 64.69vw)",
+          width: "max(204.44vh, 115vw)",
+        }}
         src={`https://www.youtube.com/embed/${VIDEO_ID}?autoplay=1&mute=1&loop=1&playlist=${VIDEO_ID}&controls=0&modestbranding=1&rel=0&playsinline=1&disablekb=1&iv_load_policy=3&cc_load_policy=0&enablejsapi=1`}
         allow="autoplay; encrypted-media"
         title="Showreel"
