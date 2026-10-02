@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react";
 
-const VIDEO_ID = "s_zvJkrwXs8";
+const VIDEO_ID = "CbxGY5Vqyeo";
 
 export default function Hero() {
   const iframeRef = useRef(null);
@@ -34,19 +34,16 @@ export default function Hero() {
       <iframe
         ref={iframeRef}
         onLoad={handleLoad}
-        className="
-          absolute top-0 left-1/2 -translate-x-1/2 pointer-events-none
-          h-[max(115svh,204.44vw)] w-[calc(max(115svh,204.44vw)_*_1.7778)]
-          md:h-[max(115vh,64.69vw)] md:w-[max(204.44vh,115vw)]
-        "
+        className="absolute top-0 left-1/2 -translate-x-1/2 pointer-events-none h-[max(115svh,64.69vw)] w-[max(204.44svh,115vw)]"
         src={`https://www.youtube.com/embed/${VIDEO_ID}?autoplay=1&mute=1&loop=1&playlist=${VIDEO_ID}&controls=0&modestbranding=1&rel=0&playsinline=1&disablekb=1&iv_load_policy=3&cc_load_policy=0&enablejsapi=1`}
         allow="autoplay; encrypted-media"
         title="Showreel"
         tabIndex={-1}
       />
 
-      {/* Overlay: a bit darker at the bottom on mobile so text stays readable */}
+      {/* Dark overlay */}
       <div className="absolute inset-0 bg-ink/60" />
+      {/* Extra gradient on phones so the text stays readable */}
       <div className="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-black/80 to-transparent md:hidden" />
 
       <div className="absolute bottom-10 md:bottom-16 left-5 right-5 md:left-16 md:right-auto z-10 max-w-2xl">

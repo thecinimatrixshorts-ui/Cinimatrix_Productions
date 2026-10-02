@@ -13,6 +13,12 @@ const photos = [
   { src: "b9.jpeg", alt: "Portrait shoot" },
   { src: "b10.jpeg", alt: "Portrait shoot" },
   { src: "b11.jpeg", alt: "Event shoot" },
+  { src: "f1.jpeg", alt: "Event shoot" },
+  { src: "f2.jpeg", alt: "Event shoot" },
+  { src: "f3.jpg", alt: "Event shoot" },
+  { src: "f4.jpg", alt: "Event shoot" },
+  { src: "f5.jpg", alt: "Event shoot" },
+  { src: "f6.jpg", alt: "Event shoot" },
 ];
 
 export default function Photos() {
