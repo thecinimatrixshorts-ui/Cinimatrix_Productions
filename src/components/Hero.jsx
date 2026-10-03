@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react";
 
-const VIDEO_ID = "CbxGY5Vqyeo";
+const VIDEO_ID = "tiYGyUSJaO0";
 
 export default function Hero() {
   const iframeRef = useRef(null);
@@ -31,15 +31,17 @@ export default function Hero() {
 
   return (
     <section className="relative h-svh md:h-screen w-full overflow-hidden bg-black">
-      <iframe
-        ref={iframeRef}
-        onLoad={handleLoad}
-        className="absolute top-0 left-1/2 -translate-x-1/2 pointer-events-none h-[max(115svh,64.69vw)] w-[max(204.44svh,115vw)]"
-        src={`https://www.youtube.com/embed/${VIDEO_ID}?autoplay=1&mute=1&loop=1&playlist=${VIDEO_ID}&controls=0&modestbranding=1&rel=0&playsinline=1&disablekb=1&iv_load_policy=3&cc_load_policy=0&enablejsapi=1`}
-        allow="autoplay; encrypted-media"
-        title="Showreel"
-        tabIndex={-1}
-      />
+     <video
+  autoPlay
+  muted
+  loop
+  playsInline
+  preload="auto"
+  poster="/hero-poster.jpg"
+  className="absolute inset-0 h-full w-full object-cover"
+>
+  <source src="https://YOUR-HOST/hero.mp4" type="video/mp4" />
+</video>
 
       {/* Dark overlay */}
       <div className="absolute inset-0 bg-ink/60" />
