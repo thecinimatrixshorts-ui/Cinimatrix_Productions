@@ -1,10 +1,11 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const VIDEO_ID = "tiYGyUSJaO0";
 
 export default function Hero() {
   const iframeRef = useRef(null);
   const timerRef = useRef(null);
+  const [ready, setReady] = useState(false);
 
   const hideCaptions = () => {
     const win = iframeRef.current?.contentWindow;
@@ -25,26 +26,35 @@ export default function Hero() {
       hideCaptions();
       if (++tries > 12) clearInterval(timerRef.current);
     }, 500);
+    // wait a moment so YouTube's spinner/logo isn't visible during the fade
+    setTimeout(() => setReady(true), 1200);
   };
 
   useEffect(() => () => clearInterval(timerRef.current), []);
 
   return (
     <section className="relative h-svh md:h-screen w-full overflow-hidden bg-black">
-     <video
-  autoPlay
-  muted
-  loop
-  playsInline
-  preload="auto"
-  poster="/hero-poster.jpg"
-  className="absolute inset-0 h-full w-full object-cover"
->
-  <source src="https://YOUR-HOST/hero.mp4" type="video/mp4" />
-</video>
+      {/* Thumbnail shows instantly, the video fades in over it */}
+      <img
+        src={`https://i.ytimg.com/vi/${VIDEO_ID}/hqdefault.jpg`}
+        alt=""
+        className="absolute inset-0 h-full w-full object-cover"
+      />
+
+      <iframe
+        ref={iframeRef}
+        onLoad={handleLoad}
+        className={`absolute top-0 left-1/2 -translate-x-1/2 pointer-events-none h-[max(115svh,64.69vw)] w-[max(204.44svh,115vw)] transition-opacity duration-1000 ${
+          ready ? "opacity-100" : "opacity-0"
+        }`}
+        src={`https://www.youtube.com/embed/${VIDEO_ID}?autoplay=1&mute=1&loop=1&playlist=${VIDEO_ID}&controls=0&modestbranding=1&rel=0&playsinline=1&disablekb=1&iv_load_policy=3&cc_load_policy=0&enablejsapi=1`}
+        allow="autoplay; encrypted-media"
+        title="Showreel"
+        tabIndex={-1}
+      />
 
       {/* Dark overlay */}
-      <div className="absolute inset-0 bg-ink/60" />
+      <div className="absolute inset-0 bg-ink/40" />
       {/* Extra gradient on phones so the text stays readable */}
       <div className="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-black/80 to-transparent md:hidden" />
 
